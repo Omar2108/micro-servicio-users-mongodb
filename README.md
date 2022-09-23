@@ -1,5 +1,5 @@
 # API USUARIOS MONGODB ATLAS
-Este proyecto esta desarrollado en Java JDK 17, con el framework Spring Boot version 2.7.3, como dependencia se utilizo Spring web, spring-boot-starter-data-mongodb, Lombok, springdoc-openapi-ui y una base de datos NoSQL MongoDB. Subido a un hosting gratuito como Heroku, la direccion principal de la api es: https://tienda-bsale-online.herokuapp.com/
+Este proyecto esta desarrollado en Java JDK 17, con el framework Spring Boot version 2.7.3, como dependencia se utilizo Spring web, spring-boot-starter-data-mongodb, Lombok, springdoc-openapi-ui y una base de datos NoSQL MongoDB. Subido a un hosting gratuito como Heroku, la direccion principal de la api es: https://api-crud-nodejs.herokuapp.com/
 
 
 ## ENDPOINT
@@ -26,7 +26,7 @@ Visite la documentación en linea en: https://api-crud-nodejs.herokuapp.com/swag
 Siempre se recomienda descargar desde GitHub la última versión.
 ###  Usando la línea de comando:
 ####  via Git:
-    git clone https://github.com/Omar2108/tienda-bsale-online.git
+    git clone https://github.com/Omar2108/micro-servicio-users-mongodb.git
 
 ## Compatibilidad con navegadores
 - IE / Edge
@@ -38,7 +38,7 @@ Siempre se recomienda descargar desde GitHub la última versión.
 
 ## Contribución
 1. Crea un Fork del repositorio.
-2. Clonar en tu maquina mediante git clone https://github.com/Omar2108/tienda-bsale-online.git
+2. Clonar en tu maquina mediante git clone https://github.com/Omar2108/micro-servicio-users-mongodb.git
 3. Crear una nueva rama.
 4. Realiza tus cambios.
 5. Manda tu pull request.
