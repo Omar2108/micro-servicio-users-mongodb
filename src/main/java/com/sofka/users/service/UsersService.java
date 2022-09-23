@@ -105,16 +105,22 @@ public class UsersService implements IUsersService {
      * Elimina un usuario por medio de su id
      *
      * @param user
+     * @return 
      */
     @Override
     @Transactional
-    public void delete(Users user) {
+    public String delete(Users user) {
+        
+        String respuesta = null;
         try {
             usersRepository.delete(user);
+            respuesta = "¡El usuario fue eliminado!";
 
         } catch (Exception e) {
+            respuesta = "¡Error: El usuario que intenta eliminar no existe!" ;
             System.out.println(e.getMessage());
         }
+        return respuesta;
 
     }
 

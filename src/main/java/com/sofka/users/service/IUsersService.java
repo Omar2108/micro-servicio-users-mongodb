@@ -18,7 +18,7 @@ public interface IUsersService {
     
     public Users update(String id, Users user);
     
-    public void delete(Users user);
+    public String delete(Users user);
     
     public Optional<Users> findUser(String id);
     

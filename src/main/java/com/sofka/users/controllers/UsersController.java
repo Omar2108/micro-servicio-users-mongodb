@@ -1,6 +1,7 @@
 
 package com.sofka.users.controllers;
 
+import com.sofka.users.domain.Respuesta;
 import com.sofka.users.domain.Users;
 import com.sofka.users.service.UsersService;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -32,12 +34,13 @@ public class UsersController {
     
     @GetMapping(path = "/")
     public String index(){
+       
         return "BIENVENIDOS A LA API REST, CON SPRING BOOT Y MONGODB ATLAS "+"ENDPOINT: "+"\n"
-                +"CONSULTAR TODOS LOS USUARIOS: "+"\n"
-                +"CREAR UN USUARIO: "+"\n"
-                +"ACTUALIZAR UN USUARIO: "+"\n"
-                +"CONSULTAR USUARIO: "+"\n"
-                +"ELIMINAR UN USUARIO: ";
+                +"CONSULTAR TODOS LOS USUARIOS: https://api-crud-nodejs.herokuapp.com/v1/users , METODO GET"+"\n"
+                +"CREAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user , METODO POST"+"\n"
+                +"ACTUALIZAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO PUT"+"\n"
+                +"CONSULTAR USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO GET"+"\n"
+                +"ELIMINAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO DELETE";
     }
     
     /**
@@ -57,10 +60,43 @@ public class UsersController {
      * @return 
      */
     @PostMapping(path = "/v1/user")
-    public ResponseEntity<Users> agregarUsuario(@RequestBody Users user) {
+    public @ResponseBody Respuesta agregarUsuario(@RequestBody Users user) {
         
-        usersService.save(user);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        Respuesta respuesta = new Respuesta();
+        
+        if ("".equals(user.getName())) {
+            
+            respuesta.setError("El nombre no puede ser nulo");
+        }else if("".equals(user.getSurName())){
+            
+            respuesta.setError("El apellido no puede ser nulo");
+        } else if("".equals(user.getDocumentType())){
+            
+            respuesta.setError("El tipo de documento no puede ser nulo");
+        } else if("".equals(user.getDocument())){
+            
+            respuesta.setError("El documento no puede ser nulo");
+        }else if("".equals(user.getEmail())){
+            
+            respuesta.setError("El email no puede ser nulo");
+        }else if("".equals(user.getAddress())){
+            
+            respuesta.setError("La direccion no puede ser nulo");
+        }else if("".equals(user.getCity())){
+            
+            respuesta.setError("La ciudad no puede ser nulo");
+        }else if("".equals(user.getLevel())){
+            
+            respuesta.setError("El nivel no puede ser nulo");
+        }else if(user.getState()==null){
+            
+            respuesta.setError("El estado no puede ser nulo");
+        }else {
+            usersService.save(user);
+            respuesta.setRespuesta("¡Usuario creado exitosamente!");
+        }
+        
+        return respuesta;
     }
     
     /**
@@ -93,9 +129,10 @@ public class UsersController {
      * @return 
      */
     @DeleteMapping(path = "/v1/user/{id}")
-    public ResponseEntity<Users> eliminarUsuario(Users user) {
+    public @ResponseBody String eliminarUsuario(Users user) {
         
-        usersService.delete(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        String respuesta = usersService.delete(user);
+        
+        return respuesta;
     }
 }
