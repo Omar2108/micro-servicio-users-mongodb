@@ -17,7 +17,7 @@ public interface IUsersService {
     
     public Users save(Users user);
     
-    public Users update(String id, Users user);
+    public Respuesta update(String id, Users user);
     
     /**
      *

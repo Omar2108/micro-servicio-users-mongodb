@@ -62,7 +62,10 @@ public class UsersController {
     @PostMapping(path = "/v1/user")
     public @ResponseBody Respuesta agregarUsuario(@RequestBody Users user) {
         
+        //instancio la clase respuesta
         Respuesta respuesta = new Respuesta();
+        
+        //se valida si los campo vienen vacio
         
         if ("".equals(user.getName())) {
             
@@ -117,10 +120,9 @@ public class UsersController {
      * @return 
      */
     @PutMapping(path = "/v1/user/{id}")
-    public ResponseEntity<Users> actualizarUsuario(@RequestBody Users user, @PathVariable("id") String id) {
-        
-        usersService.update(id, user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public @ResponseBody Respuesta actualizarUsuario(@RequestBody Users user, @PathVariable("id") String id) {
+       
+        return usersService.update(id, user);
     }
     
     /**

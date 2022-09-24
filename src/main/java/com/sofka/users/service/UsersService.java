@@ -72,15 +72,19 @@ public class UsersService implements IUsersService {
      */
     @Override
     @Transactional
-    public Users update(String id, Users user) {
+    public Respuesta update(String id, Users user) {
 
         try {
+
+            //instancio el objeto de tipo respuesta
+            Respuesta respuesta = new Respuesta();
+
+            //se consulta si el usuario ingresado por el cliente en la base de datos
             Optional<Users> resul = usersRepository.findById(id);
 
-            if (resul == null) {
+            //se valida si el usuario existe 
+            if (resul.isPresent()) {
 
-                System.out.println("El usuario que desea actualizar no existe");
-            } else {
                 user.setId(id);
                 user.setName(user.getName());
                 user.setSurName(user.getSurName());
@@ -91,7 +95,13 @@ public class UsersService implements IUsersService {
                 user.setCity(user.getCity());
                 user.setLevel(user.getLevel());
                 user.setState(user.getState());
-                return usersRepository.save(user);
+                usersRepository.save(user);
+                respuesta.setRespuesta("¡Usuario actualizado exitosamente!");
+                return respuesta;
+
+            } else {
+                respuesta.setError("El usuario que desea actualizar no existe");
+                return respuesta;
             }
 
         } catch (Exception e) {
@@ -112,13 +122,13 @@ public class UsersService implements IUsersService {
     public Respuesta delete(Users user) {
 
         try {
-            
+
             Respuesta respuesta = new Respuesta();
 
             Optional<Users> result = usersRepository.findById(user.getId());
-          
+
             if (result.isPresent()) {
-                
+
                 usersRepository.delete(user);
                 respuesta.setRespuesta("¡El usuario fue eliminado!");
                 return respuesta;
@@ -145,8 +155,7 @@ public class UsersService implements IUsersService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Users> findUser(String id) {
-        
-        
+
         return usersRepository.findById(id);
 
     }
