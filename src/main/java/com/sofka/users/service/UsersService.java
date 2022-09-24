@@ -1,5 +1,6 @@
 package com.sofka.users.service;
 
+import com.sofka.users.domain.Respuesta;
 import com.sofka.users.domain.Users;
 import com.sofka.users.repository.UsersRepository;
 import java.util.List;
@@ -75,9 +76,9 @@ public class UsersService implements IUsersService {
 
         try {
             Optional<Users> resul = usersRepository.findById(id);
-            
+
             if (resul == null) {
-                
+
                 System.out.println("El usuario que desea actualizar no existe");
             } else {
                 user.setId(id);
@@ -92,7 +93,6 @@ public class UsersService implements IUsersService {
                 user.setState(user.getState());
                 return usersRepository.save(user);
             }
-            
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -105,22 +105,34 @@ public class UsersService implements IUsersService {
      * Elimina un usuario por medio de su id
      *
      * @param user
-     * @return 
+     * @return
      */
-    @Override
     @Transactional
-    public String delete(Users user) {
-        
-        String respuesta = null;
+    @Override
+    public Respuesta delete(Users user) {
+
         try {
-            usersRepository.delete(user);
-            respuesta = "¡El usuario fue eliminado!";
+            
+            Respuesta respuesta = new Respuesta();
+
+            Optional<Users> result = usersRepository.findById(user.getId());
+          
+            if (result.isPresent()) {
+                
+                usersRepository.delete(user);
+                respuesta.setRespuesta("¡El usuario fue eliminado!");
+                return respuesta;
+
+            } else {
+                respuesta.setError("¡Error: El usuario que intenta eliminar no existe!");
+                return respuesta;
+            }
 
         } catch (Exception e) {
-            respuesta = "¡Error: El usuario que intenta eliminar no existe!" ;
+
             System.out.println(e.getMessage());
         }
-        return respuesta;
+        return null;
 
     }
 
@@ -133,6 +145,8 @@ public class UsersService implements IUsersService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Users> findUser(String id) {
+        
+        
         return usersRepository.findById(id);
 
     }

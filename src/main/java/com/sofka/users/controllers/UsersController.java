@@ -129,9 +129,9 @@ public class UsersController {
      * @return 
      */
     @DeleteMapping(path = "/v1/user/{id}")
-    public @ResponseBody String eliminarUsuario(Users user) {
+    public @ResponseBody Respuesta eliminarUsuario(Users user) {
         
-        String respuesta = usersService.delete(user);
+        Respuesta respuesta = usersService.delete(user);
         
         return respuesta;
     }

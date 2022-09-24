@@ -1,6 +1,7 @@
 
 package com.sofka.users.service;
 
+import com.sofka.users.domain.Respuesta;
 import com.sofka.users.domain.Users;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,12 @@ public interface IUsersService {
     
     public Users update(String id, Users user);
     
-    public String delete(Users user);
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public Respuesta delete(Users user);
     
     public Optional<Users> findUser(String id);
     
