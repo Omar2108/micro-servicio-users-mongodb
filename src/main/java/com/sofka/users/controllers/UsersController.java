@@ -36,11 +36,11 @@ public class UsersController {
     public String index(){
        
         return "BIENVENIDOS A LA API REST, CON SPRING BOOT Y MONGODB ATLAS "+"ENDPOINT: "+"\n"
-                +"CONSULTAR TODOS LOS USUARIOS: https://api-crud-nodejs.herokuapp.com/v1/users , METODO GET"+"\n"
-                +"CREAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user , METODO POST"+"\n"
-                +"ACTUALIZAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO PUT"+"\n"
-                +"CONSULTAR USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO GET"+"\n"
-                +"ELIMINAR UN USUARIO: https://api-crud-nodejs.herokuapp.com/v1/user/{id} , METODO DELETE";
+                +"CONSULTAR TODOS LOS USUARIOS: https://micro-servicio-users-mongodb-production.up.railway.app/v1/users , METODO GET"+"\n"
+                +"CREAR UN USUARIO: https://micro-servicio-users-mongodb-production.up.railway.app/v1/user , METODO POST"+"\n"
+                +"ACTUALIZAR UN USUARIO: https://micro-servicio-users-mongodb-production.up.railway.app/v1/user/{id} , METODO PUT"+"\n"
+                +"CONSULTAR USUARIO: https://micro-servicio-users-mongodb-production.up.railway.app/v1/user/{id} , METODO GET"+"\n"
+                +"ELIMINAR UN USUARIO: https://micro-servicio-users-mongodb-production.up.railway.app/v1/user/{id} , METODO DELETE";
     }
     
     /**
